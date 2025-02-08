@@ -27,7 +27,7 @@ export default function ContactMe() {
           <input 
             type="hidden" 
             name="_next" 
-            value="http://localhost:3000?submitted=true"
+            value="https://sankalparoraportfolio.vercel.app?submitted=true"
           />
           <input type="hidden" name="_autoresponse" value="Thank you for your message! Sankalp will reach out to you soon." />
           
