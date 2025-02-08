@@ -1,8 +1,7 @@
 "use client"
 
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
 import { useToast } from "@/components/ui/use-toast"
 import Navigation from './components/navigation'
 import Hero from './components/hero'
@@ -11,10 +10,11 @@ import Portfolio from './components/portfolio'
 import BlogsAndArticles from './components/blogs-and-articles'
 import ContactMe from './components/contact-me'
 import Footer from './components/footer'
+import SearchParamsWrapper from './components/search-params-wrapper'
 
 export default function Home() {
-  const searchParams = useSearchParams()
   const { toast } = useToast()
+  const searchParams = useSearchParams()
   
   useEffect(() => {
     const submitted = searchParams.get('submitted')
@@ -34,11 +34,12 @@ export default function Home() {
       url.searchParams.delete('submitted')
       window.history.replaceState({}, '', url)
     }
-  }, [searchParams, toast])
+  }, [searchParams, toast]) // Removed useSearchParams from dependencies, using `searchParams` directly
 
   return (
     <main className="min-h-screen bg-background">
       <Suspense fallback={<div>Loading...</div>}>
+        <SearchParamsWrapper />
         <Navigation />
         <Hero />
         <AboutMe />
@@ -50,4 +51,3 @@ export default function Home() {
     </main>
   )
 }
-
