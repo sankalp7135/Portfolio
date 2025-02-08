@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useToast } from "@/components/ui/use-toast"
@@ -37,13 +38,15 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
-      <Hero />
-      <AboutMe />
-      <Portfolio />
-      <BlogsAndArticles />
-      <ContactMe />
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Navigation />
+        <Hero />
+        <AboutMe />
+        <Portfolio />
+        <BlogsAndArticles />
+        <ContactMe />
+        <Footer />
+      </Suspense>
     </main>
   )
 }
